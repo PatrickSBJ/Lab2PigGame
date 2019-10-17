@@ -5,6 +5,7 @@ import androidx.versionedparcelable.ParcelField;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -115,7 +116,7 @@ implements OnEditorActionListener {
         player1NameEditText.setText("");
         player2NameEditText.setText("");
         playerTurnLabelTextView.setText("");
-        dieImageView.setImageResource(R.drawable.pig_background);
+        dieImageView.setImageResource(R.drawable.);
         turnPointsTextView.setText("");
         player1ScoreTextView.setText("");
         player2ScoreTextView.setText("");
@@ -146,14 +147,15 @@ implements OnEditorActionListener {
 
         game.changeTurn();
 
-        if(turn % 2 == 1)
+        if(turn == 1)
         {
-            playerTurnLabelTextView.setText(String.format("%s's turn", game.getPlayer1Name()));
+            playerTurnLabelTextView.setText(String.format("%s's turn", game.getPlayer2Name()));
             player1ScoreTextView.setText(Integer.toString(game.getPlayer1Score()));
         }
         else {
-            playerTurnLabelTextView.setText(String.format("%s's turn", game.getPlayer2Name()));
+            playerTurnLabelTextView.setText(String.format("%s's turn", game.getPlayer1Name()));
             player2ScoreTextView.setText(Integer.toString(game.getPlayer2Score()));
+
         }
         if(game.checkForWinner() == "Tie" || game.checkForWinner() == String.format("%s wins!", game.getPlayer2Name())
                 || game.checkForWinner() == String.format("%s wins!", game.getPlayer1Name()) )
