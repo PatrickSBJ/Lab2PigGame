@@ -24,16 +24,20 @@ public class MainActivity extends AppCompatActivity
 implements OnEditorActionListener {
     PigGame game = new PigGame();
 
+    private static final String PIG_GAME="PigGameActivity";
+
     private EditText player1NameEditText;
     private EditText player2NameEditText;
     private TextView player1ScoreTextView;
     private TextView player2ScoreTextView;
     private TextView playerTurnLabelTextView;
+    private TextView winningMessage;
     private ImageView dieImageView;
     private TextView turnPointsTextView;
     private Button rollDieButton;
     private Button endTurnButton;
     private Button newGameButton;
+    int dieNumber;
 
     private SharedPreferences savedValues;
 
@@ -55,6 +59,7 @@ implements OnEditorActionListener {
         player1ScoreTextView = (TextView) findViewById(R.id.player1Score);
         player2ScoreTextView = (TextView) findViewById(R.id.player2Score);
         playerTurnLabelTextView = (TextView) findViewById(R.id.playerTurnLabel);
+        winningMessage = (TextView) findViewById(R.id.winningMessage);
         dieImageView = (ImageView) findViewById(R.id.dieImage);
         turnPointsTextView = (TextView) findViewById(R.id.turnPoints);
         rollDieButton = (Button) findViewById(R.id.rollDieButton);
@@ -116,15 +121,16 @@ implements OnEditorActionListener {
         player1NameEditText.setText("");
         player2NameEditText.setText("");
         playerTurnLabelTextView.setText("");
-        dieImageView.setImageResource(R.drawable.);
+        dieImageView.setImageResource(android.R.color.transparent);
         turnPointsTextView.setText("");
         player1ScoreTextView.setText("");
         player2ScoreTextView.setText("");
+        winningMessage.setText("");
         //
     }
     public void rollDieClick()
     {
-        int dieNumber = game.rollDie();
+        dieNumber = game.rollDie();
         dieImageView.setImageResource(imgIds[dieNumber]);
         turnPointsTextView.setText(Integer.toString(game.getTurnPoints()));
         if(dieNumber == 8) {
@@ -139,14 +145,16 @@ implements OnEditorActionListener {
         //switch turn
         int turn = game.getTurn();
 
+        game.changeTurn();
+
+        turnPointsTextView.setText("");
+        dieImageView.setImageResource(android.R.color.transparent);
+
         if(rollDieButton.isEnabled() == false)
         {
             rollDieButton.setEnabled(true);
         }
-        turnPointsTextView.setText("");
-
-        game.changeTurn();
-
+        Log.d(PIG_GAME, Integer.toString(turn));
         if(turn == 1)
         {
             playerTurnLabelTextView.setText(String.format("%s's turn", game.getPlayer2Name()));
@@ -157,12 +165,13 @@ implements OnEditorActionListener {
             player2ScoreTextView.setText(Integer.toString(game.getPlayer2Score()));
 
         }
-        if(game.checkForWinner() == "Tie" || game.checkForWinner() == String.format("%s wins!", game.getPlayer2Name())
+       /* if(game.checkForWinner() == "Tie" || game.checkForWinner() == String.format("%s wins!", game.getPlayer2Name())
                 || game.checkForWinner() == String.format("%s wins!", game.getPlayer1Name()) )
         {
             playerTurnLabelTextView.setText(game.checkForWinner());
-        }
+        } */
 
+        winningMessage.setText(game.checkForWinner());
     }
     public void newGameClick()
     {

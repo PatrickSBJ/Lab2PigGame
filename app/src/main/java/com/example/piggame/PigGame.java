@@ -12,6 +12,7 @@ public class PigGame {
     private String player1Name = "";
     private String player2Name = "";
     private int turn;
+    private boolean firstTurn;
 
     public void PigGame()
     {
@@ -19,6 +20,7 @@ public class PigGame {
         player2Score = 0;
         turnPoints = 0;
         turn = 1; // player 1 goes first
+        firstTurn = true;
     }
 
     public void PigGame(int p1Score, int p2Score, int tPoints, int t)
@@ -27,6 +29,8 @@ public class PigGame {
         player2Score = p2Score;
         turnPoints = tPoints;
         turn = t;
+        firstTurn = true;
+
     }
 
     public void setPlayer1Name(String n)
@@ -70,6 +74,7 @@ public class PigGame {
         player2Score = 0;
         turnPoints = 0;
         turn = 1;
+        firstTurn = true;
     }
 
     public int rollDie()
@@ -83,7 +88,6 @@ public class PigGame {
         else
         {
             turnPoints = 0;
-            changeTurn();
         }
 
         return roll;
@@ -111,7 +115,13 @@ public class PigGame {
 
         turnPoints = 0;
 
-        turn++;
+        if(turn == 1)
+            turn = 2;
+        else
+            turn = 1;
+
+        firstTurn = false;
+
         return turn;
     }
 
@@ -124,7 +134,7 @@ public class PigGame {
             }
             // Player 1 can only win after player 2 has had thier turn
             // This is so both players can have an equal number of turns
-            else if (player1Score > player2Score && turn % 2 == 1) {
+            else if (player1Score > player2Score && !firstTurn) {
                 winnerMessage = String.format("%s wins!", player1Name);
             } else if (player1Score == player2Score) {
                 winnerMessage = "Tie";
