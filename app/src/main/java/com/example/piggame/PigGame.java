@@ -3,7 +3,7 @@ package com.example.piggame;
 import java.util.Random;
 
 public class PigGame {
-    final private int WINNING_SCORE = 100;
+    private int winningScore = 100;
 
     private Random rand = new Random();
     private int player1Score;
@@ -36,6 +36,10 @@ public class PigGame {
     public void setPlayer1Name(String n)
     {
         player1Name = n;
+    }
+    public void setWinningScore(int n)
+    {
+        winningScore = n;
     }
 
     public String getPlayer1Name()
@@ -128,7 +132,7 @@ public class PigGame {
     public String checkForWinner()
     {
         String winnerMessage = "";
-        if (player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE) {
+        if (player1Score >= winningScore || player2Score >= winningScore) {
             if (player2Score > player1Score) {
                 winnerMessage = String.format("%s wins!", player2Name);
             }

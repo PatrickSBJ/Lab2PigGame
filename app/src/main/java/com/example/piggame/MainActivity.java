@@ -5,7 +5,10 @@ import androidx.versionedparcelable.ParcelField;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.nfc.Tag;
+import android.content.Intent;
+import android.preference.PreferenceManager;
+import android.view.MenuItem;
+import android.view.Menu;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 
 import org.w3c.dom.Text;
@@ -33,15 +37,22 @@ implements OnEditorActionListener {
     private TextView playerTurnLabelTextView;
     private TextView winningMessage;
     private ImageView dieImageView;
+    private ImageView dieImageView2;
     private TextView turnPointsTextView;
     private Button rollDieButton;
     private Button endTurnButton;
     private Button newGameButton;
-    int dieNumber;
+    int dieNumber1;
+    int dieNumber2;
+    private int numberOfDie;
+    private int winningScore;
+    private int badNumber;
 
     private SharedPreferences savedValues;
+    private SharedPreferences prefs;
 
-    final int[] imgIds = new int[]{
+
+    final int[] IMG_IDS = new int[]{
             R.drawable.die1,R.drawable.die1,R.drawable.die2,
             R.drawable.die3,R.drawable.die4,
             R.drawable.die5,R.drawable.die6,
@@ -61,6 +72,7 @@ implements OnEditorActionListener {
         playerTurnLabelTextView = (TextView) findViewById(R.id.playerTurnLabel);
         winningMessage = (TextView) findViewById(R.id.winningMessage);
         dieImageView = (ImageView) findViewById(R.id.dieImage);
+        dieImageView2 = (ImageView) findViewById(R.id.secondDieImageView);
         turnPointsTextView = (TextView) findViewById(R.id.turnPoints);
         rollDieButton = (Button) findViewById(R.id.rollDieButton);
         endTurnButton = (Button) findViewById(R.id.endTurnButton);
@@ -71,30 +83,48 @@ implements OnEditorActionListener {
 
         savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
 
-        rollDieButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        PreferenceManager.setDefaultValues(this,R.xml.preferences, false);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        rollDieButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 rollDieClick();
             }
         });
-        endTurnButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        endTurnButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 endTurnClick();
             }
         });
-        newGameButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        newGameButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 newGameClick();
             }
         });
 
         game.PigGame();
         newGame();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.activity_pig_game, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menu_settings:
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                return true;
+            case R.id.menu_about:
+                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     @Override
     public void onPause()
@@ -114,6 +144,12 @@ implements OnEditorActionListener {
     {
         super.onResume();
 
+        numberOfDie = Integer.parseInt(prefs.getString("pref_number_of_die", "1"));
+        winningScore = Integer.parseInt(prefs.getString("pref_winning_score", "100"));
+        badNumber = Integer.parseInt(prefs.getString("pref_bad_number", "8"));
+
+
+        game.setWinningScore(winningScore);
     }
     public void newGame()
     {
@@ -122,6 +158,7 @@ implements OnEditorActionListener {
         player2NameEditText.setText("");
         playerTurnLabelTextView.setText("");
         dieImageView.setImageResource(android.R.color.transparent);
+        dieImageView2.setImageResource(android.R.color.transparent);
         turnPointsTextView.setText("");
         player1ScoreTextView.setText("");
         player2ScoreTextView.setText("");
@@ -130,12 +167,13 @@ implements OnEditorActionListener {
     }
     public void rollDieClick()
     {
-        dieNumber = game.rollDie();
-        dieImageView.setImageResource(imgIds[dieNumber]);
+        dieNumber1 = game.rollDie();
+        dieNumber2 = game.rollDie();
+        dieImageView.setImageResource(IMG_IDS[dieNumber1]);
+        dieImageView2.setImageResource(IMG_IDS[dieNumber2]);
         turnPointsTextView.setText(Integer.toString(game.getTurnPoints()));
-        if(dieNumber == 8) {
+        if(dieNumber1 == 8 || dieNumber2 == 8) {
             rollDieButton.setEnabled(false);
-
         }
     }
     public void endTurnClick()
@@ -149,6 +187,7 @@ implements OnEditorActionListener {
 
         turnPointsTextView.setText("");
         dieImageView.setImageResource(android.R.color.transparent);
+        dieImageView2.setImageResource(android.R.color.transparent);
 
         if(rollDieButton.isEnabled() == false)
         {

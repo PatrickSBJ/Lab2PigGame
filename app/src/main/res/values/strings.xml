@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">PigGame</string>
+
+    <string-array name="number_of_die_keys">
+        <item >1 Die</item>
+        <item >2 Die</item>
+    </string-array>
+    <string-array name="number_of_die_values">
+        <item >1</item>
+        <item >2</item>
+    </string-array>
+
+    <string-array name="bad_number_keys">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+        <item >5</item>
+        <item >6</item>
+        <item >7</item>
+        <item >8</item>
+    </string-array>
+    <string-array name="bad_number_values">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+        <item >4</item>
+        <item >5</item>
+        <item >6</item>
+        <item >7</item>
+        <item >8</item>
+    </string-array>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="pref_number_of_die"
+        android:title="Number of Die"
+        android:summary="Choose the number of die you would like to play with"
+        android:dialogTitle="Number of Die"
+        android:entries="@array/number_of_die_keys"
+        android:entryValues="@array/number_of_die_values"
+        android:defaultValue="1"
+        />
+    <ListPreference
+        android:key="pref_bad_number"
+        android:title="Bad Number"
+        android:summary="Choose the bad number that ends a turn"
+        android:dialogTitle="Bad Number"
+        android:entries="@array/bad_number_keys"
+        android:entryValues="@array/bad_number_values"
+        android:defaultValue="8"
+        />
+    <EditTextPreference
+        android:key="pref_winning_score"
+        android:title="The Winning Score"
+        android:summary="Input the winning score"
+        android:defaultValue="100"
+        />
+</PreferenceScreen>
