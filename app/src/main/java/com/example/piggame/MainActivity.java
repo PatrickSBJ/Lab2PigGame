@@ -44,9 +44,8 @@ implements OnEditorActionListener {
     private Button newGameButton;
     int dieNumber1;
     int dieNumber2;
+    //Defined instance variables for settings preferences
     private int numberOfDie;
-    private int winningScore;
-    private int badNumber;
 
     private SharedPreferences savedValues;
     private SharedPreferences prefs;
@@ -85,6 +84,7 @@ implements OnEditorActionListener {
 
         PreferenceManager.setDefaultValues(this,R.xml.preferences, false);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
 
         rollDieButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -136,6 +136,8 @@ implements OnEditorActionListener {
         editor.putString("player2Score",player2ScoreTextView.toString());
         editor.putString("turnPoints",turnPointsTextView.toString());
         editor.putString("playerTurnLabel",playerTurnLabelTextView.toString());
+        editor.putInt("dieNumber1",dieNumber1);
+        editor.putInt("dieNumber2",dieNumber2);
         editor.commit();
         super.onPause();
     }
@@ -144,12 +146,20 @@ implements OnEditorActionListener {
     {
         super.onResume();
 
-        numberOfDie = Integer.parseInt(prefs.getString("pref_number_of_die", "1"));
-        winningScore = Integer.parseInt(prefs.getString("pref_winning_score", "100"));
-        badNumber = Integer.parseInt(prefs.getString("pref_bad_number", "8"));
+        game.setPlayer1Name(savedValues.getString("player1Name",""));
+        game.setPlayer2Name(savedValues.getString("player2Name",""));
+
+        dieNumber1 = savedValues.getInt("dieNumber1",dieNumber1);
+        dieNumber2 = savedValues.getInt("dieNumber2",dieNumber2);
 
 
-        game.setWinningScore(winningScore);
+        dieImageView.setImageResource(IMG_IDS[dieNumber1]);
+        dieImageView.setImageResource(IMG_IDS[dieNumber2]);
+
+        //Usable preferences
+        game.setNumberOfDie(Integer.parseInt(prefs.getString("pref_number_of_die", "1")));
+        game.setWinningScore(Integer.parseInt(prefs.getString("pref_winning_score", "100")));
+        game.badNumber = Integer.parseInt(prefs.getString("pref_bad_number", "8"));
     }
     public void newGame()
     {
@@ -167,12 +177,23 @@ implements OnEditorActionListener {
     }
     public void rollDieClick()
     {
-        dieNumber1 = game.rollDie();
-        dieNumber2 = game.rollDie();
-        dieImageView.setImageResource(IMG_IDS[dieNumber1]);
-        dieImageView2.setImageResource(IMG_IDS[dieNumber2]);
+        if(game.getNumberOfDie() == 1)
+        {
+            dieNumber1 = game.rollDie();
+            dieImageView.setImageResource(IMG_IDS[dieNumber1]);
+        }
+        else
+        {
+            dieNumber1 = game.rollDie();
+            dieImageView.setImageResource(IMG_IDS[dieNumber1]);
+
+            dieNumber2 = game.rollDie();
+            dieImageView2.setImageResource(IMG_IDS[dieNumber2]);
+        }
+
+
         turnPointsTextView.setText(Integer.toString(game.getTurnPoints()));
-        if(dieNumber1 == 8 || dieNumber2 == 8) {
+        if(dieNumber1 == game.badNumber || dieNumber2 == game.badNumber) {
             rollDieButton.setEnabled(false);
         }
     }

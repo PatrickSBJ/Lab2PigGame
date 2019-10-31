@@ -13,6 +13,9 @@ public class PigGame {
     private String player2Name = "";
     private int turn;
     private boolean firstTurn;
+    private int numberOfDie;
+
+    public int badNumber = 8;
 
     public void PigGame()
     {
@@ -32,7 +35,6 @@ public class PigGame {
         firstTurn = true;
 
     }
-
     public void setPlayer1Name(String n)
     {
         player1Name = n;
@@ -40,6 +42,15 @@ public class PigGame {
     public void setWinningScore(int n)
     {
         winningScore = n;
+    }
+    public void setNumberOfDie(int n)
+    {
+        numberOfDie = n;
+    }
+
+    public int getNumberOfDie()
+    {
+        return numberOfDie;
     }
 
     public String getPlayer1Name()
@@ -76,6 +87,8 @@ public class PigGame {
     {
         player1Score = 0;
         player2Score = 0;
+        player1Name = "";
+        player2Name = "";
         turnPoints = 0;
         turn = 1;
         firstTurn = true;
@@ -85,7 +98,7 @@ public class PigGame {
     {
         int roll = rand.nextInt(9);
 
-        if(roll != 8)
+        if(roll != badNumber)
         {
             turnPoints += roll;
         }
