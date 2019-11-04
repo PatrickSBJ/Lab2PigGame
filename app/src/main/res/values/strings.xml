@@ -30,4 +30,11 @@
         <item >7</item>
         <item >8</item>
     </string-array>
+
+    <string name="game_rules">The “Big Pig” version of the game is a dice game with 2 players and one die, but it is an 8-sided die.
+        Each player rolls the die as many times as they wish or until they roll an 8. Their score for the turn is the sum of their rolls
+        unless they get an 8, then it’s zero. When they roll an 8, the “Roll Die” button should be disabled, re-enable it when the next
+        player starts their turn Players keep taking turns rolling until someone gets to 100. If the player who had the first roll reaches
+        100, the second player may still take their turn. The player with the highest score wins.</string>
+
 </resources>

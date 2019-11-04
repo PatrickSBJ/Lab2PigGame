@@ -1,32 +1,26 @@
 package com.example.piggame;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.versionedparcelable.ParcelField;
-
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.Intent;
-import android.preference.PreferenceManager;
-import android.view.MenuItem;
-import android.view.Menu;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Button;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 
-import org.w3c.dom.Text;
+import androidx.fragment.app.Fragment;
 
-
-public class MainActivity extends AppCompatActivity
- {
-    PigGame game = new PigGame();
+public class GameplayFragment extends Fragment
+{
 
     private static final String PIG_GAME="PigGameActivity";
 
@@ -40,7 +34,6 @@ public class MainActivity extends AppCompatActivity
     private TextView turnPointsTextView;
     private Button rollDieButton;
     private Button endTurnButton;
-    private Button newGameButton;
     int dieNumber1;
     int dieNumber2;
     //Defined instance variables for settings preferences
@@ -59,21 +52,25 @@ public class MainActivity extends AppCompatActivity
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_gameplay, container, false);
 
-        player1ScoreTextView = (TextView) findViewById(R.id.player1Score);
-        player2ScoreTextView = (TextView) findViewById(R.id.player2Score);
-        playerTurnLabelTextView = (TextView) findViewById(R.id.playerTurnLabel);
-        winningMessage = (TextView) findViewById(R.id.winningMessage);
-        dieImageView = (ImageView) findViewById(R.id.dieImage);
-        dieImageView2 = (ImageView) findViewById(R.id.secondDieImageView);
-        turnPointsTextView = (TextView) findViewById(R.id.turnPoints);
-        rollDieButton = (Button) findViewById(R.id.rollDieButton);
-        endTurnButton = (Button) findViewById(R.id.endTurnButton);
-        newGameButton = (Button) findViewById(R.id.newGameButton);
+        player1ScoreTextView = (TextView) view.findViewById(R.id.player1Score);
+        player2ScoreTextView = (TextView) view.findViewById(R.id.player2Score);
+        playerTurnLabelTextView = (TextView) view.findViewById(R.id.playerTurnLabel);
+        winningMessage = (TextView) view.findViewById(R.id.winningMessage);
+        dieImageView = (ImageView) view.findViewById(R.id.dieImage);
+        dieImageView2 = (ImageView) view.findViewById(R.id.secondDieImageView);
+        turnPointsTextView = (TextView) view.findViewById(R.id.turnPoints);
+        rollDieButton = (Button) view.findViewById(R.id.rollDieButton);
+        endTurnButton = (Button) view.findViewById(R.id.endTurnButton);
 
 
 
@@ -101,7 +98,10 @@ public class MainActivity extends AppCompatActivity
 
         game.PigGame();
         newGame();
+        // return the View for the layout
+        return view;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPause()
     {
-        Editor editor = savedValues.edit();
+        SharedPreferences.Editor editor = savedValues.edit();
         editor.putString("player1Score",player1ScoreTextView.toString());
         editor.putString("player2Score",player2ScoreTextView.toString());
         editor.putString("turnPoints",turnPointsTextView.toString());
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     {
         //clear views
         //player1NameEditText.setText("");
-       //player2NameEditText.setText("");
+        //player2NameEditText.setText("");
         playerTurnLabelTextView.setText("");
         dieImageView.setImageResource(android.R.color.transparent);
         dieImageView2.setImageResource(android.R.color.transparent);
@@ -233,5 +233,4 @@ public class MainActivity extends AppCompatActivity
         game.resetGame();
         newGame();
     }
-
 }
