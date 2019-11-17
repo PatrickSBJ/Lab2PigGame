@@ -2,33 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/player2NameEditText"
         android:layout_width="127dp"
         android:layout_height="39dp"
-        android:layout_marginStart="252dp"
+        android:layout_marginStart="300dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144" />
-
-    <EditText
-        android:id="@+id/player1NameEditText"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/player2NameEditText"
-        app:layout_constraintHorizontal_bias="0.198"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
+        app:layout_constraintVertical_bias="0.123" />
 
     <TextView
         android:id="@+id/player1Label"
@@ -37,10 +24,10 @@
         android:text="Player One:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <TextView
         android:id="@+id/player2Label"
@@ -53,34 +40,45 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.063" />
+
+    <EditText
+        android:id="@+id/player1NameEditText"
+        android:layout_width="121dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/player2NameEditText"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
 
     <Button
         android:id="@+id/newGameButton"
-        android:layout_width="180dp"
-        android:layout_height="65dp"
+        android:layout_width="171dp"
+        android:layout_height="77dp"
         android:text="New Game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="0.979" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="214dp"
-        android:layout_height="229dp"
+        android:layout_width="447dp"
+        android:layout_height="224dp"
         android:fontFamily="sans-serif"
         android:text="@string/game_rules"
         android:textAlignment="center"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
+        app:layout_constraintVertical_bias="0.844" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

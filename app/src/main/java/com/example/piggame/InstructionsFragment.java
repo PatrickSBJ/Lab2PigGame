@@ -12,21 +12,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import androidx.fragment.app.Fragment;
+import android.content.Intent;
+
 
 public class InstructionsFragment extends Fragment
-    implements OnEditorActionListener
+    implements OnEditorActionListener, View.OnClickListener
 {
-    PigGame game = new PigGame();
 
     //define variables for widgets
     private EditText player1NameEditText;
     private EditText player2NameEditText;
+    private Button newGameButton;
 
     // define instance variables that should be saved
     private String player1Name;
     private String player2Name;
 
-    private SharedPreferences savedValues;
 
 
     @Override
@@ -40,32 +41,35 @@ public class InstructionsFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_instructions, container, false);
 
 
-        player1NameEditText = (EditText) view.findViewById(R.id.player1NameEditText);
-        player2NameEditText = (EditText) view.findViewById(R.id.player2NameEditText);
+        player1NameEditText = view.findViewById(R.id.player1NameEditText);
+        player2NameEditText = view.findViewById(R.id.player2NameEditText);
+        newGameButton =  view.findViewById(R.id.newGameButton);
+
+
 
         player1NameEditText.setOnEditorActionListener(this);
         player2NameEditText.setOnEditorActionListener(this);
+        newGameButton.setOnClickListener(this);
         // return the View for the layout
         return view;
     }
     @Override
-    public void onPause() {
-        SharedPreferences.Editor editor = savedValues.edit();
-        editor.putString("player1Name",player1NameEditText.toString());
-        editor.putString("player2Name",player2NameEditText.toString());
-        editor.commit();
-        super.onPause();
-    }
-
-    @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
     {
-        game.setPlayer1Name(player1NameEditText.getText().toString());
-        game.setPlayer2Name(player2NameEditText.getText().toString());
-
-       //playerTurnLabelTextView.setText(game.getPlayer1Name() + "'s turn");
-
+        player1Name = player1NameEditText.getText().toString();
+        player2Name = player2NameEditText.getText().toString();
 
         return false;
+    }
+    @Override
+    public void onClick(View v)
+    {
+        //Create a new intent to start the main activity
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        // put the data to be passed to the next activity in the intent extras
+        intent.putExtra("PLAYER_1_NAME", player1Name);
+        intent.putExtra("PLAYER_2_NAME", player2Name);
+        //Start new activity
+        startActivity(intent);
     }
 }

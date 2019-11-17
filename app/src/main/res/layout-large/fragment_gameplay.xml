@@ -24,10 +24,10 @@
             android:text="Score:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintHorizontal_bias="0.169"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.247" />
+            app:layout_constraintVertical_bias="0.14" />
 
         <TextView
             android:id="@+id/turnPointsLabel"
@@ -41,27 +41,28 @@
 
         <TextView
             android:id="@+id/player2ScoreLabelTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="14dp"
             android:text="Score:"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintHorizontal_bias="0.884"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.247" />
+            app:layout_constraintVertical_bias="0.138" />
 
         <Button
             android:id="@+id/rollDieButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="380dp"
             android:layout_marginBottom="32dp"
             android:text="Roll Die"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.034"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.451"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.943" />
 
         <Button
             android:id="@+id/endTurnButton"
@@ -71,8 +72,10 @@
             android:text="End Turn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.373"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.943" />
 
         <TextView
             android:id="@+id/player2Score"
@@ -109,7 +112,6 @@
             android:id="@+id/turnPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +139,7 @@
             android:layout_height="85dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.577"
+            app:layout_constraintHorizontal_bias="0.635"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -148,7 +150,7 @@
             android:layout_height="78dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.423"
+            app:layout_constraintHorizontal_bias="0.315"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.501"

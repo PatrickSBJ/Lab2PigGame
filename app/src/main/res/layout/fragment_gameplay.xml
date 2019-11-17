@@ -40,15 +40,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.411"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/player1ScoreLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Score:"
-            tools:layout_editor_absoluteX="111dp"
-            tools:layout_editor_absoluteY="109dp" />
+            tools:srcCompat="@drawable/die1" />
 
         <TextView
             android:id="@+id/turnPointsLabel"
@@ -62,81 +54,75 @@
             app:layout_constraintTop_toBottomOf="@+id/dieImage"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/player2ScoreLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Score:"
-            tools:layout_editor_absoluteX="283dp"
-            tools:layout_editor_absoluteY="102dp" />
-
-
-        <Button
-            android:id="@+id/endTurnButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="140dp"
-            android:text="End Turn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/rollDieButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginBottom="140dp"
+            android:layout_marginBottom="92dp"
             android:text="Roll Die"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/endTurnButton" />
 
-        <TextView
-            android:id="@+id/player1Label"
+        <Button
+            android:id="@+id/endTurnButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="28dp"
-            android:text="Player One:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/player2Label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="76dp"
-            android:text="Player Two:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="92dp"
+            android:text="End Turn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/player2Score"
             android:layout_width="80dp"
             android:layout_height="29dp"
-            android:layout_marginTop="12dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/player2ScoreLabel"
-            app:layout_constraintHorizontal_bias="0.525"
-            app:layout_constraintStart_toStartOf="@+id/player2ScoreLabel"
-            app:layout_constraintTop_toBottomOf="@+id/player2ScoreLabel" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/player2ScoreLabelTextView"
+            app:layout_constraintHorizontal_bias="0.55"
+            app:layout_constraintStart_toStartOf="@+id/player2ScoreLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/player2ScoreLabelTextView" />
+
+        <TextView
+            android:id="@+id/player1ScoreLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Score:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.269"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.053" />
 
         <TextView
             android:id="@+id/player1Score"
             android:layout_width="80dp"
             android:layout_height="29dp"
-            android:layout_marginTop="12dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/player1ScoreLabel"
-            app:layout_constraintStart_toStartOf="@+id/player1ScoreLabel"
-            app:layout_constraintTop_toBottomOf="@+id/player1ScoreLabel" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/player1ScoreLabelTextView"
+            app:layout_constraintStart_toStartOf="@+id/player1ScoreLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/player1ScoreLabelTextView" />
+
+        <TextView
+            android:id="@+id/player2ScoreLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.795"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063" />
 
         <TextView
             android:id="@+id/playerTurnLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/dieImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
@@ -149,7 +135,6 @@
             android:layout_width="91dp"
             android:layout_height="48dp"
             android:layout_marginTop="360dp"
-            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
